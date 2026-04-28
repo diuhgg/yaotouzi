@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "dice": "/components/dice/dice"
+  },
+  "navigationBarTitleText": "摇骰子"
+}

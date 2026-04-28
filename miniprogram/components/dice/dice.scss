@@ -1,0 +1,219 @@
+/**
+ * 骰子组件样式 - 精致3D风格
+ */
+
+/* 基础骰子样式 */
+.dice {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20rpx;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  cursor: pointer;
+
+  /* 3D透视 */
+  perspective: 600rpx;
+  transform-style: preserve-3d;
+}
+
+.dice-face {
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx;
+  position: relative;
+  overflow: hidden;
+
+  /* 骰子面 - 象牙白渐变 */
+  background: linear-gradient(145deg, #fefefe 0%, #f5f0eb 40%, #e8e0d8 100%);
+
+  /* 多层阴影营造立体感 */
+  box-shadow:
+    0 4rpx 8rpx rgba(0, 0, 0, 0.08),
+    0 8rpx 20rpx rgba(0, 0, 0, 0.12),
+    0 16rpx 40rpx rgba(0, 0, 0, 0.06),
+    inset 0 2rpx 4rpx rgba(255, 255, 255, 0.9),
+    inset 0 -2rpx 6rpx rgba(0, 0, 0, 0.06);
+
+  /* 内边框高光 */
+  border: 1rpx solid rgba(255, 255, 255, 0.6);
+}
+
+/* 骰子面上的高光层 */
+.dice-face::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
+  border-radius: 20rpx 20rpx 0 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* 骰子面上的底部暗角 */
+.dice-face::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20%;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.04) 0%,
+    transparent 100%
+  );
+  border-radius: 0 0 20rpx 20rpx;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.dice-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* 骰子点样式 - 精致凸起效果 */
+.dice-dot {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+
+  /* 深色圆点 - 仿象牙骰子 */
+  background: radial-gradient(
+    circle at 35% 35%,
+    #3d2c2c 0%,
+    #2c1818 60%,
+    #1a0e0e 100%
+  );
+
+  /* 凹陷效果（模拟真实骰子的凹陷圆点） */
+  box-shadow:
+    inset 0 2rpx 4rpx rgba(0, 0, 0, 0.5),
+    inset 0 -1rpx 2rpx rgba(255, 255, 255, 0.1),
+    0 1rpx 2rpx rgba(0, 0, 0, 0.08);
+}
+
+/* ========== 大骰子 (160rpx) ========== */
+.dice-large {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.dice-large .dice-dot {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+/* 大骰子点位 (160rpx，padding=28rpx，间距=52rpx) */
+.dice-large .position-0 { top: 28rpx;  left: 28rpx; }
+.dice-large .position-1 { top: 28rpx;  left: 80rpx; }
+.dice-large .position-2 { top: 28rpx;  left: 132rpx; }
+.dice-large .position-3 { top: 80rpx;  left: 28rpx; }
+.dice-large .position-4 { top: 80rpx;  left: 80rpx; }
+.dice-large .position-5 { top: 80rpx;  left: 132rpx; }
+.dice-large .position-6 { top: 132rpx; left: 28rpx; }
+.dice-large .position-7 { top: 132rpx; left: 80rpx; }
+.dice-large .position-8 { top: 132rpx; left: 132rpx; }
+
+/* ========== 中骰子 (120rpx) ========== */
+.dice-medium {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.dice-medium .dice-dot {
+  width: 22rpx;
+  height: 22rpx;
+}
+
+.dice-medium .position-0 { top: 20rpx; left: 20rpx; }
+.dice-medium .position-1 { top: 20rpx; left: 60rpx; }
+.dice-medium .position-2 { top: 20rpx; left: 100rpx; }
+.dice-medium .position-3 { top: 60rpx; left: 20rpx; }
+.dice-medium .position-4 { top: 60rpx; left: 60rpx; }
+.dice-medium .position-5 { top: 60rpx; left: 100rpx; }
+.dice-medium .position-6 { top: 100rpx; left: 20rpx; }
+.dice-medium .position-7 { top: 100rpx; left: 60rpx; }
+.dice-medium .position-8 { top: 100rpx; left: 100rpx; }
+
+/* ========== 小骰子 (80rpx) ========== */
+.dice-small {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.dice-small .dice-dot {
+  width: 14rpx;
+  height: 14rpx;
+}
+
+.dice-small .position-0 { top: 14rpx; left: 14rpx; }
+.dice-small .position-1 { top: 14rpx; left: 40rpx; }
+.dice-small .position-2 { top: 14rpx; left: 66rpx; }
+.dice-small .position-3 { top: 40rpx; left: 14rpx; }
+.dice-small .position-4 { top: 40rpx; left: 40rpx; }
+.dice-small .position-5 { top: 40rpx; left: 66rpx; }
+.dice-small .position-6 { top: 66rpx; left: 14rpx; }
+.dice-small .position-7 { top: 66rpx; left: 40rpx; }
+.dice-small .position-8 { top: 66rpx; left: 66rpx; }
+
+/* ========== 摇骰子动画 - 弹跳旋转效果 ========== */
+.dice.rolling {
+  animation: diceRoll 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes diceRoll {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  8% {
+    transform: rotate(-18deg) translate(-6rpx, -12rpx) scale(1.05);
+  }
+  16% {
+    transform: rotate(20deg) translate(10rpx, -8rpx) scale(0.95);
+  }
+  24% {
+    transform: rotate(-14deg) translate(-10rpx, 6rpx) scale(1.08);
+  }
+  32% {
+    transform: rotate(16deg) translate(8rpx, 10rpx) scale(0.92);
+  }
+  40% {
+    transform: rotate(-10deg) translate(-6rpx, -6rpx) scale(1.04);
+  }
+  50% {
+    transform: rotate(12deg) translate(6rpx, -4rpx) scale(0.96);
+  }
+  60% {
+    transform: rotate(-6deg) translate(-4rpx, 4rpx) scale(1.02);
+  }
+  70% {
+    transform: rotate(4deg) translate(3rpx, -2rpx) scale(0.98);
+  }
+  80% {
+    transform: rotate(-2deg) translate(-2rpx, 1rpx) scale(1.01);
+  }
+  90% {
+    transform: rotate(1deg) translate(1rpx, 0) scale(1);
+  }
+  100% {
+    transform: rotate(0deg) translate(0, 0) scale(1);
+  }
+}
+
+/* 骰子按下效果 */
+.dice:active:not(.rolling) {
+  transform: scale(0.92);
+  transition: transform 0.1s ease;
+}

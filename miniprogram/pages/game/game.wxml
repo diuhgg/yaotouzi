@@ -1,0 +1,47 @@
+<!--游戏主页面-->
+<view class="game-container">
+  <!-- 游戏标题 -->
+  <view class="game-header">
+    <text class="game-title">🎲摇骰子</text>
+    <text class="game-subtitle">试试你的手气</text>
+  </view>
+
+  <!-- 骰子区域 -->
+  <view class="dice-container">
+    <view class="dice-row">
+      <dice
+        wx:for="{{gameData.dice}}"
+        wx:key="id"
+        value="{{item.value}}"
+        rolling="{{item.isRolling}}"
+        revealed="{{gameData.status === 'revealed'}}"
+        size="large"
+        bind:diceTap="onDiceTap"
+      ></dice>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="button-container">
+    <button
+      wx:if="{{gameData.status === 'rolled' || gameData.status === 'revealed'}}"
+      class="reveal-button {{gameData.status === 'revealed' ? 'hide' : ''}}"
+      bindtap="onReveal"
+    >
+      开
+    </button>
+    <button
+      class="roll-button {{isRolling ? 'disabled' : ''}}"
+      bindtap="onRollDice"
+      disabled="{{isRolling}}"
+    >
+      {{isRolling ? '摇骰中...' : '摇骰子'}}
+    </button>
+  </view>
+
+  <!-- 游戏说明 -->
+  <view class="game-instructions">
+    <text class="instructions-title">游戏说明</text>
+    <text class="instructions-text">点击"摇骰子"按钮随机摇5颗骰子，试试你的运气！</text>
+  </view>
+</view>

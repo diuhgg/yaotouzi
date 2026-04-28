@@ -1,0 +1,17 @@
+<!--骰子组件-->
+<view
+  class="dice dice-{{size}} {{rolling ? 'rolling' : ''}}"
+  bindtap="onTap"
+>
+  <view class="dice-face">
+    <view class="dice-content">
+      <!-- 9个点位，根据点数显示对应数量的圆点 -->
+      <view
+        wx:for="{{[0,1,2,3,4,5,6,7,8]}}"
+        wx:key="item"
+        class="dice-dot position-{{item}}"
+        hidden="{{!revealed || !hasDot[item]}}"
+      ></view>
+    </view>
+  </view>
+</view>
